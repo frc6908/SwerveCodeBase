@@ -16,8 +16,8 @@ import frc.robot.Constants.DriveMotors;
  * arcade steering.
  */
 public class Robot extends TimedRobot {
-  private final CANSparkMax m_leftMotor = new CANSparkMax(DriveMotors.leftMotorID);
-  private final CANSparkMax m_rightMotor = new CANSparkMax(DriveMotors.rightMotorID);
+  private final CANSparkMax m_leftMotor = new CANSparkMax(0);
+  private final CANSparkMax m_rightMotor = new CANSparkMax(1);
   private final DifferentialDrive m_robotDrive =
       new DifferentialDrive(m_leftMotor::set, m_rightMotor::set);
   private final Joystick m_stick = new Joystick(0);
