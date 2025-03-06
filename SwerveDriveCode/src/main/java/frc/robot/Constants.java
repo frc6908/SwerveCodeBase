@@ -27,6 +27,13 @@ public final class Constants {
     
     public static final int kDriverControllerPort = 0;
 
+    /* ========= */
+    /* Deadbands */
+    /* ========= */
+    public static final double xDeadband = 0.2;
+    public static final double yDeadband = 0.2;
+    public static final double rDeadband = 0.3;
+
     /* ======= */
     /* BUTTONS */
     /* ======= */
@@ -35,9 +42,9 @@ public final class Constants {
   
   public static class DrivetrainConstants {
     // Swerve Kinematics, X forward/backward and Y is left/right
-    public static final double wheelBase = Units.inchesToMeters(24); // distance between front wheels
-    public static final double trackWidth = Units.inchesToMeters(24); // distance between side wheels
-    public static final double wheelDiamter = Units.inchesToMeters(4.0);
+    public static final double wheelBase = Units.inchesToMeters(23); // distance between front wheels
+    public static final double trackWidth = Units.inchesToMeters(23); // distance between side wheels
+    public static final double wheelDiameter = Units.inchesToMeters(4.0);
     public static final SwerveDriveKinematics SwerveDriveKinematics = new SwerveDriveKinematics(
       new Translation2d(wheelBase / 2.0, trackWidth / 2.0), // front right (+,+)
       new Translation2d(wheelBase / 2.0, -trackWidth / 2.0), // back right (+,-)
@@ -52,7 +59,7 @@ public final class Constants {
     // Given motor rotations, convert to meters traveled
     // (1 rev / Gear Ratio) * ((2 * PI * r) / (1 Rev)) = 
     // (2 * PI * r) / (Gear Ratio) = 
-    public static final double drivePositionConversionFactor = 0.0945735744;
+    public static final double drivePositionConversionFactor = 0.0472867872;
 
     // dx/dt
     // Given RPM, convert to m/s
@@ -61,7 +68,7 @@ public final class Constants {
     // Given Motor Rotations, convert to Radians travelled
     // (1 rev / Gear Ratio) * ((2 * PI) RAD / (1 Rev))
     // (2 * PI) RAD / (Gear Ratio)
-    public static final double rotationPositionConversionFactor = 0; // TBDTBDTBDTBDTBDTBD
+    public static final double rotationPositionConversionFactor = 0.29321531433;
 
     // Given RPM, convert to radians/seconds
     public static final double rotationVelocityConversionFactor = rotationPositionConversionFactor / 60.0;
@@ -84,31 +91,31 @@ public final class Constants {
     /* SWERVE MODULES */
     /* ============== */
     // Front Left Module
-    public static final int kFLDrive = 1;
-    public static final int kFLRotate = 2;
-    public static final int kFLCanCoder = 11;
-    public static final double kFLOffsetRad = 0 * 2 * Math.PI;
+    public static final int kFLDrive = 5;
+    public static final int kFLRotate = 6;
+    public static final int kFLCanCoder = 14;
+    public static final double kFLOffsetRad = 0.046143 * 2 * Math.PI;
     public static final boolean fLIsInverted = false;
 
     // Front Right Module
     public static final int kFRDrive = 3;
     public static final int kFRRotate = 4;
-    public static final int kFRCanCoder = 12;
-    public static final double kFROffsetRad = 0 * 2 * Math.PI;
+    public static final int kFRCanCoder = 13;
+    public static final double kFROffsetRad = 0.031006 * 2 * Math.PI;
     public static final boolean fRIsInverted = true;
     
     // Back Left Module
-    public static final int kBLDrive = 5;
-    public static final int kBLRotate = 6;
-    public static final int kBLCanCoder = 13;
-    public static final double kBLOffsetRad = 0 * 2 * Math.PI;
+    public static final int kBLDrive = 7;
+    public static final int kBLRotate = 8;
+    public static final int kBLCanCoder = 12;
+    public static final double kBLOffsetRad = 0.01709 * 2 * Math.PI;
     public static final boolean bLIsInverted = false;
 
     // Back Right Module
-    public static final int kBRDrive = 7;
-    public static final int kBRRotate = 8;
-    public static final int kBRCanCoder = 14;
-    public static final double kBROffsetRad = 0 * 2 * Math.PI;
+    public static final int kBRDrive = 1;
+    public static final int kBRRotate = 2;
+    public static final int kBRCanCoder = 11;
+    public static final double kBROffsetRad = 0.170166 * 2 * Math.PI;
     public static final boolean bRIsInverted = true;
 
     /* =============================== */
