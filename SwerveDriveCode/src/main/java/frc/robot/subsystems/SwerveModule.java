@@ -36,7 +36,13 @@ public class SwerveModule extends SubsystemBase {
     private final PIDController rotationPIDController;
 
     /* CREATE SWERVE MODULE */
-    public SwerveModule(int driveMotorID, int rotationMotorID, int canCoderID, double canCoderOffsetRadians, boolean isDriveInverted) {
+    public SwerveModule(
+      int driveMotorID,
+      int rotationMotorID,
+      int canCoderID,
+      double canCoderOffsetRadians,
+      boolean isDriveInverted
+    ) {
       // motor controllers + configuration
       driveMotor = new SparkMax(driveMotorID, MotorType.kBrushless);
       rotationMotor = new SparkMax(rotationMotorID, MotorType.kBrushless);

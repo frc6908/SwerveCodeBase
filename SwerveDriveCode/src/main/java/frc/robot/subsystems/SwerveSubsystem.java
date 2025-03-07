@@ -3,12 +3,15 @@ package frc.robot.subsystems;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.SerialPort;
 import frc.robot.Constants.DrivetrainConstants;
 
 import javax.lang.model.type.DeclaredType;
+
+import org.littletonrobotics.junction.Logger;
 
 import com.studica.frc.AHRS;
 import com.studica.frc.AHRS.NavXComType;
@@ -133,6 +136,29 @@ public class SwerveSubsystem extends SubsystemBase{
             : new ChassisSpeeds(forward, strafe, rotation);
         speeds = ChassisSpeeds.discretize(speeds, 0.02);
         
-        Logger 
+        Logger.recordOutput("ChassisSpeeds", speeds);
+
+        SwerveModuleState[] states = DrivetrainConstants.SwerveDriveKinematics.toSwerveModuleStates(speeds);
+        SwerveDriveKinematics.desaturateWheelSpeeds(states, DrivetrainConstants.maxVelocity);
+        setModuleStates(states);
+    }
+
+    public SwerveModuleState[] getStates(){
+        SwerveModuleState[] states = {
+            frontLeft.getState(),
+            frontRight.getState(),
+            backLeft.getState(),
+            backRight.getState()
+        };
+        return states;
+    }
+
+    @Override
+    public void periodic(){
+        odometry.update(getHeading(), getModulePositions());
+
+        Logger.recordOutput("MyStates", getStates());
+        Logger.recordOutput("NavX Heading", getHeading());
+        Logger.recordOutput("Odometry Pose", getPose());
     }
 }
