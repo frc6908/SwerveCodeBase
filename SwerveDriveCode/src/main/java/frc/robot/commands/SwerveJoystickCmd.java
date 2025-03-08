@@ -22,7 +22,8 @@ public class SwerveJoystickCmd extends Command {
         SwerveSubsystem swerveSubsystem,
         DoubleSupplier forwardX,
         DoubleSupplier forwardY,
-        DoubleSupplier rotation) {
+        DoubleSupplier rotation
+        ) {
         this.drivetrain = swerveSubsystem;
         this.forwardX = forwardX;
         this.forwardY = forwardY;
@@ -40,9 +41,9 @@ public class SwerveJoystickCmd extends Command {
 
     @Override
     public void execute(){
-        double xSpeed = forwardX.getAsDouble();
-        double ySpeed = forwardY.getAsDouble();
-        double rot = rotation.getAsDouble();
+        double xSpeed = -forwardX.getAsDouble();
+        double ySpeed = -forwardY.getAsDouble();
+        double rot = -rotation.getAsDouble();
         
         xSpeed = applyDeadbandAndLimiter(xSpeed, OperatorConstants.xDeadband, xLimiter, DrivetrainConstants.maxVelocity);
         ySpeed = applyDeadbandAndLimiter(ySpeed, OperatorConstants.yDeadband, yLimiter, DrivetrainConstants.maxVelocity);
@@ -51,9 +52,9 @@ public class SwerveJoystickCmd extends Command {
         // can adjust speeds based on slider here
         //
 
-        xSpeed = MathUtil.applyDeadband(xSpeed, 0.1, 1);
-        ySpeed = MathUtil.applyDeadband(ySpeed, 0.1, 1);
-        rot = MathUtil.applyDeadband(rot, 0.3, 1);
+        // xSpeed = MathUtil.applyDeadband(xSpeed, 0.1, 1);
+        // ySpeed = MathUtil.applyDeadband(ySpeed, 0.1, 1);
+        // rot = MathUtil.applyDeadband(rot, 0.3, 1);
 
         drivetrain.drive(
             xSpeed,

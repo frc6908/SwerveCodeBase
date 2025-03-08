@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.estimator.PoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
@@ -7,6 +8,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.DrivetrainConstants;
 
 import javax.lang.model.type.DeclaredType;
@@ -27,8 +29,8 @@ public class SwerveSubsystem extends SubsystemBase{
         DrivetrainConstants.kFLRotate,
         DrivetrainConstants.kFLCanCoder,
         DrivetrainConstants.kFLOffsetRad,
-        DrivetrainConstants.fLIsInverted)
-    ;
+        DrivetrainConstants.fLIsInverted
+    );
     private final SwerveModule frontRight = new SwerveModule(
         DrivetrainConstants.kFRDrive,
         DrivetrainConstants.kFRRotate,
@@ -63,13 +65,14 @@ public class SwerveSubsystem extends SubsystemBase{
 
     public SwerveSubsystem(){
         navX = new AHRS(AHRS.NavXComType.kMXP_SPI); // might not be correct declaration
+        // need to delay navX startup by 1 second because it might take longer to boot up
         new Thread(() -> {
             try{
                 Thread.sleep(1000);
                 navX.reset();
                 odometry.resetPosition(new Rotation2d(), getModulePositions(), new Pose2d());
             }
-            catch(Exception e){            }
+            catch(Exception e){}
         }).start();
 
         // initialize rotation offsets
@@ -105,6 +108,10 @@ public class SwerveSubsystem extends SubsystemBase{
         return navX;
     }
 
+    public void resetHeading(){
+        navX.reset();
+    }
+
     public void resetOdometry(Pose2d pose){
         odometry.resetPosition(getHeading(), getModulePositions(), pose);
     }
@@ -126,6 +133,16 @@ public class SwerveSubsystem extends SubsystemBase{
         return positions;
     }
 
+    public SwerveModuleState[] getStates(){
+        SwerveModuleState[] states = {
+            frontLeft.getState(),
+            frontRight.getState(),
+            backLeft.getState(),
+            backRight.getState()
+        };
+        return states;
+    }
+
     public void setFieldRelativity(){
         fieldRelativeStatus = !fieldRelativeStatus;
     }
@@ -143,22 +160,24 @@ public class SwerveSubsystem extends SubsystemBase{
         setModuleStates(states);
     }
 
-    public SwerveModuleState[] getStates(){
-        SwerveModuleState[] states = {
-            frontLeft.getState(),
-            frontRight.getState(),
-            backLeft.getState(),
-            backRight.getState()
-        };
-        return states;
-    }
-
     @Override
     public void periodic(){
+        super.periodic();
         odometry.update(getHeading(), getModulePositions());
+
 
         Logger.recordOutput("MyStates", getStates());
         Logger.recordOutput("NavX Heading", getHeading());
         Logger.recordOutput("Odometry Pose", getPose());
+        
+        execute();
+    }
+
+    protected void execute() {
+        // encoder values
+        SmartDashboard.putNumber("FL Drive Encoder", frontLeft.getDriveVelocity());
+        SmartDashboard.putNumber("FR Drive Encoder", frontRight.getDriveVelocity());
+        SmartDashboard.putNumber("BL Drive Encoder", backLeft.getDriveVelocity());
+        SmartDashboard.putNumber("BR Drive Encoder", backRight.getDriveVelocity());
     }
 }
