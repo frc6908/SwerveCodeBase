@@ -30,8 +30,8 @@ public final class Constants {
     /* ========= */
     /* Deadbands */
     /* ========= */
-    public static final double xDeadband = 0.2;
-    public static final double yDeadband = 0.2;
+    public static final double xDeadband = 0.1;
+    public static final double yDeadband = 0.1;
     public static final double rDeadband = 0.3;
 
     /* ======= */
@@ -78,8 +78,8 @@ public final class Constants {
     /* ======== */
 
     // maximillian
-    public static final double maxVelocity = 5; // m/s
-    public static final double maxAcceleration = 1; // m/s^2
+    public static final double maxVelocity = 4; // m/s
+    public static final double maxAcceleration = 7; // m/s^2
     public static final double maxAngularVelocity = 2 * Math.PI; // rad/s
     public static final double maxAngularAcceleration = 4 * Math.PI; // rad/s^2
     // Teleop Max Speeds
@@ -91,32 +91,32 @@ public final class Constants {
     /* SWERVE MODULES */
     /* ============== */
     // Front Left Module
-    public static final int kFLDrive = 5;
-    public static final int kFLRotate = 6;
+    public static final int kFLDrive = 4;
+    public static final int kFLRotate = 7;
     public static final int kFLCanCoder = 14;
-    public static final double kFLOffsetRad = 0.04834 * 2 * Math.PI;
+    public static final double kFLOffsetRad = 0.088623 * 2 * Math.PI;
     public static final boolean fLIsInverted = false;
 
     // Front Right Module
-    public static final int kFRDrive = 3;
-    public static final int kFRRotate = 4;
+    public static final int kFRDrive = 5;
+    public static final int kFRRotate = 3;
     public static final int kFRCanCoder = 13;
-    public static final double kFROffsetRad = 0.030518 * 2 * Math.PI;
+    public static final double kFROffsetRad = 0.00708 * 2 * Math.PI;
     public static final boolean fRIsInverted = true;
     
     // Back Left Module
-    public static final int kBLDrive = 7;
-    public static final int kBLRotate = 8;
+    public static final int kBLDrive = 6;
+    public static final int kBLRotate = 1;
     public static final int kBLCanCoder = 12;
-    public static final double kBLOffsetRad = 0.010742 * 2 * Math.PI;
-    public static final boolean bLIsInverted = false;
+    public static final double kBLOffsetRad = 0.025391 * 2 * Math.PI;
+    public static final boolean bLIsInverted = true;
 
     // Back Right Module
-    public static final int kBRDrive = 1;
+    public static final int kBRDrive = 8;
     public static final int kBRRotate = 2;
     public static final int kBRCanCoder = 11;
-    public static final double kBROffsetRad = 0.166748 * 2 * Math.PI;
-    public static final boolean bRIsInverted = true;
+    public static final double kBROffsetRad = 0.163574 * 2 * Math.PI;
+    public static final boolean bRIsInverted = false;
 
     /* =============================== */
     /* SWERVE MODULE CONTROL CONSTANTS */

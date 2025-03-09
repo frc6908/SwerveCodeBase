@@ -158,6 +158,11 @@ public class SwerveSubsystem extends SubsystemBase{
         SwerveModuleState[] states = DrivetrainConstants.SwerveDriveKinematics.toSwerveModuleStates(speeds);
         SwerveDriveKinematics.desaturateWheelSpeeds(states, DrivetrainConstants.maxVelocity);
         setModuleStates(states);
+
+        SmartDashboard.putNumber("FL Set Speed", states[0].speedMetersPerSecond);
+        SmartDashboard.putNumber("FR Set Speed", states[1].speedMetersPerSecond);
+        SmartDashboard.putNumber("BL Set Speed", states[2].speedMetersPerSecond);
+        SmartDashboard.putNumber("BR Set Speed", states[3].speedMetersPerSecond);
     }
 
     @Override
