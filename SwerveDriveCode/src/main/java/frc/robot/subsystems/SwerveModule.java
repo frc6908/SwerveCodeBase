@@ -21,6 +21,7 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
 
@@ -44,7 +45,8 @@ public class SwerveModule extends SubsystemBase {
       int rotationMotorID,
       int canCoderID,
       double canCoderOffsetRadians,
-      boolean isDriveInverted
+      boolean isDriveInverted,
+      double x
     ) {
       // motor controllers
       driveMotor = new SparkMax(driveMotorID, MotorType.kBrushless);
@@ -69,7 +71,8 @@ public class SwerveModule extends SubsystemBase {
       // PIDs
       drivePIDController = new PIDController(DrivetrainConstants.kPDrive, DrivetrainConstants.kIDrive, DrivetrainConstants.kDDrive);
 
-      rotationPIDController = new PIDController(DrivetrainConstants.kPRotation, DrivetrainConstants.kIRotation, DrivetrainConstants.kDRotation);
+      // rotationPIDController = new PIDController(DrivetrainConstants.kPRotation, DrivetrainConstants.kIRotation, DrivetrainConstants.kDRotation);
+      rotationPIDController = new PIDController(x, DrivetrainConstants.kIRotation, DrivetrainConstants.kDRotation);
       rotationPIDController.setTolerance(DrivetrainConstants.kToleranceRotation);
       rotationPIDController.enableContinuousInput(-Math.PI, Math.PI);
 
@@ -132,7 +135,7 @@ public class SwerveModule extends SubsystemBase {
 
       // set rotation motor with PID controller
       rotationMotor.set(rotationPIDController.calculate(getCANCoderRad(), state.angle.getRadians()));
-      
+
       // set drive motor speed
       // driveMotor.set(drivePIDController.calculate(getDriveVelocity(), state.speedMetersPerSecond/DrivetrainConstants.maxVelocity));
       driveMotor.set(drivePIDController.calculate(state.speedMetersPerSecond));

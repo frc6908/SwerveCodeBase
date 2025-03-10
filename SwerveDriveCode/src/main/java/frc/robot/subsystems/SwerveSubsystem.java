@@ -29,28 +29,32 @@ public class SwerveSubsystem extends SubsystemBase{
         DrivetrainConstants.kFLRotate,
         DrivetrainConstants.kFLCanCoder,
         DrivetrainConstants.kFLOffsetRad,
-        DrivetrainConstants.fLIsInverted
+        DrivetrainConstants.fLIsInverted,
+        DrivetrainConstants.kPRotation
     );
     private final SwerveModule frontRight = new SwerveModule(
         DrivetrainConstants.kFRDrive,
         DrivetrainConstants.kFRRotate,
         DrivetrainConstants.kFRCanCoder,
         DrivetrainConstants.kFROffsetRad,
-        DrivetrainConstants.fRIsInverted
+        DrivetrainConstants.fRIsInverted,
+        DrivetrainConstants.kPRotation
     );
     private final SwerveModule backLeft = new SwerveModule(
         DrivetrainConstants.kBLDrive,
         DrivetrainConstants.kBLRotate,
         DrivetrainConstants.kBLCanCoder,
         DrivetrainConstants.kBLOffsetRad,
-        DrivetrainConstants.bLIsInverted
+        DrivetrainConstants.bLIsInverted,
+        DrivetrainConstants.kPRotation
     );
     private final SwerveModule backRight = new SwerveModule(
         DrivetrainConstants.kBRDrive,
         DrivetrainConstants.kBRRotate,
         DrivetrainConstants.kBRCanCoder,
         DrivetrainConstants.kBROffsetRad,
-        DrivetrainConstants.bRIsInverted
+        DrivetrainConstants.bRIsInverted,
+        DrivetrainConstants.kPRotation
     );
 
     // navX
@@ -121,6 +125,11 @@ public class SwerveSubsystem extends SubsystemBase{
         frontRight.setState(desiredStates[1]);
         backLeft.setState(desiredStates[2]);
         backRight.setState(desiredStates[3]);
+
+        SmartDashboard.putNumber("FL Set Position", desiredStates[0].angle.getRadians());
+        SmartDashboard.putNumber("FR Set Position", desiredStates[1].angle.getRadians());
+        SmartDashboard.putNumber("BL Set Position", desiredStates[2].angle.getRadians());
+        SmartDashboard.putNumber("BR Set Position", desiredStates[3].angle.getRadians());
     }
 
     public SwerveModulePosition[] getModulePositions(){
@@ -164,10 +173,10 @@ public class SwerveSubsystem extends SubsystemBase{
         SmartDashboard.putNumber("BL Set Speed", states[2].speedMetersPerSecond);
         SmartDashboard.putNumber("BR Set Speed", states[3].speedMetersPerSecond);
 
-        SmartDashboard.putNumber("FL Set Position", states[0].angle.getRadians());
-        SmartDashboard.putNumber("FR Set Position", states[1].angle.getRadians());
-        SmartDashboard.putNumber("BL Set Position", states[2].angle.getRadians());
-        SmartDashboard.putNumber("BR Set Position", states[3].angle.getRadians());
+        // SmartDashboard.putNumber("FL Set Position", states[0].angle.getRadians());
+        // SmartDashboard.putNumber("FR Set Position", states[1].angle.getRadians());
+        // SmartDashboard.putNumber("BL Set Position", states[2].angle.getRadians());
+        // SmartDashboard.putNumber("BR Set Position", states[3].angle.getRadians());
     }
 
     @Override

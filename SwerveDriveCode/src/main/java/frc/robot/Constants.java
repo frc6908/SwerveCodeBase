@@ -78,9 +78,9 @@ public final class Constants {
     /* ======== */
 
     // maximillian
-    public static final double maxVelocity = 4; // m/s
+    public static final double maxVelocity = 1; // m/s
     public static final double maxAcceleration = 7; // m/s^2
-    public static final double maxAngularVelocity = 2 * Math.PI; // rad/s
+    public static final double maxAngularVelocity = 1 * Math.PI; // rad/s
     public static final double maxAngularAcceleration = 4 * Math.PI; // rad/s^2
     // Teleop Max Speeds
     public static final double kTeleDriveMaxSpeed = 7.5 / 4.0; // meters/sec
@@ -127,9 +127,14 @@ public final class Constants {
     public static final double kDDrive  = 0.0;
     // public static final SimpleMotorFeedforward driveFF = new SimpleMotorFeedforward(0.2, 2.5, 0.0);
 
-    public static final double kPRotation = 0.25;
+
+
+    public static final double kPRotation = 0.56; // working BL and FR p-value: .56
     public static final double kIRotation = 0.0;
     public static final double kDRotation = 0.0;
     public static final double kToleranceRotation = 0.01;
+
+    public static final double kPR2 = 0.12;
+    
   }
 }
