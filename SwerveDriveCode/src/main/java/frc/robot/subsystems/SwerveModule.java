@@ -36,7 +36,7 @@ public class SwerveModule extends SubsystemBase {
     
     // PID
     private final PIDController rotationPIDController;
-    // private final PIDController drivePIDController;
+    private final PIDController drivePIDController;
 
     /* CREATE SWERVE MODULE */
     public SwerveModule(
@@ -67,7 +67,7 @@ public class SwerveModule extends SubsystemBase {
       rotationMotor.clearFaults();
 
       // PIDs
-      // drivePIDController = new PIDController(DrivetrainConstants.kPDrive, DrivetrainConstants.kIDrive, DrivetrainConstants.kDDrive);
+      drivePIDController = new PIDController(DrivetrainConstants.kPDrive, DrivetrainConstants.kIDrive, DrivetrainConstants.kDDrive);
 
       rotationPIDController = new PIDController(DrivetrainConstants.kPRotation, DrivetrainConstants.kIRotation, DrivetrainConstants.kDRotation);
       rotationPIDController.setTolerance(DrivetrainConstants.kToleranceRotation);
@@ -135,7 +135,7 @@ public class SwerveModule extends SubsystemBase {
       
       // set drive motor speed
       // driveMotor.set(drivePIDController.calculate(getDriveVelocity(), state.speedMetersPerSecond/DrivetrainConstants.maxVelocity));
-      driveMotor.set(state.speedMetersPerSecond/DrivetrainConstants.maxVelocity);
+      driveMotor.set(drivePIDController.calculate(state.speedMetersPerSecond));
     }
 
     /*
@@ -224,7 +224,8 @@ public class SwerveModule extends SubsystemBase {
      * @return current rotation position
      */
     public double getRotationPosition() {
-      return rotationEncoder.getPosition();
+      // return rotationEncoder.getPosition();
+      return getCANCoderRad();
     }
   
     @Override

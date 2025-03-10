@@ -163,6 +163,11 @@ public class SwerveSubsystem extends SubsystemBase{
         SmartDashboard.putNumber("FR Set Speed", states[1].speedMetersPerSecond);
         SmartDashboard.putNumber("BL Set Speed", states[2].speedMetersPerSecond);
         SmartDashboard.putNumber("BR Set Speed", states[3].speedMetersPerSecond);
+
+        SmartDashboard.putNumber("FL Set Position", states[0].angle.getRadians());
+        SmartDashboard.putNumber("FR Set Position", states[1].angle.getRadians());
+        SmartDashboard.putNumber("BL Set Position", states[2].angle.getRadians());
+        SmartDashboard.putNumber("BR Set Position", states[3].angle.getRadians());
     }
 
     @Override
@@ -184,5 +189,10 @@ public class SwerveSubsystem extends SubsystemBase{
         SmartDashboard.putNumber("FR Drive Encoder", frontRight.getDriveVelocity());
         SmartDashboard.putNumber("BL Drive Encoder", backLeft.getDriveVelocity());
         SmartDashboard.putNumber("BR Drive Encoder", backRight.getDriveVelocity());
+
+        SmartDashboard.putNumber("FL Angle Position", frontLeft.getRotationPosition());
+        SmartDashboard.putNumber("FR Angle Position", frontRight.getRotationPosition());
+        SmartDashboard.putNumber("BL Angle Position", backLeft.getRotationPosition());
+        SmartDashboard.putNumber("BR Angle Position", backRight.getRotationPosition());
     }
 }

@@ -31,19 +31,19 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    // m_drivetrain.setDefaultCommand(new SwerveJoystickCmd(
-    //   m_drivetrain, 
-    //   () -> m_driverController.getLeftX(), 
-    //   () -> m_driverController.getLeftY(), 
-    //   () -> m_driverController.getRightX()
-    // ));
+    m_drivetrain.setDefaultCommand(new SwerveJoystickCmd(
+      m_drivetrain, 
+      () -> m_driverController.getLeftX(), 
+      () -> m_driverController.getLeftY(), 
+      () -> m_driverController.getRightX()
+    ));
 
-    m_drivetrain.setDefaultCommand(Commands.sequence(
-      new SwerveJoystickCmd(m_drivetrain, () -> .1, () -> 0.3, () -> 0).withTimeout(5), 
-      new SwerveJoystickCmd(m_drivetrain, () -> .3, () -> 0.3, () -> 0).withTimeout(5),
-      new SwerveJoystickCmd(m_drivetrain, () -> .5, () -> 0.3, () -> 0).withTimeout(5),
-      new SwerveJoystickCmd(m_drivetrain, () -> .6, () -> 0.3, () -> 0).withTimeout(5),
-      new SwerveJoystickCmd(m_drivetrain, () -> .7, () -> 0.3, () -> 0).withTimeout(5)));
+    // m_drivetrain.setDefaultCommand(Commands.sequence(
+    //   new SwerveJoystickCmd(m_drivetrain, () -> .1, () -> 0.3, () -> 0).withTimeout(5), 
+    //   new SwerveJoystickCmd(m_drivetrain, () -> .3, () -> 0.3, () -> 0).withTimeout(5),
+    //   new SwerveJoystickCmd(m_drivetrain, () -> .5, () -> 0.3, () -> 0).withTimeout(5),
+    //   new SwerveJoystickCmd(m_drivetrain, () -> .6, () -> 0.3, () -> 0).withTimeout(5),
+    //   new SwerveJoystickCmd(m_drivetrain, () -> .7, () -> 0.3, () -> 0).withTimeout(5)));
     
     // Configure the trigger bindings
     configureBindings();
