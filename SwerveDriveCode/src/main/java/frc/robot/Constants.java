@@ -129,9 +129,9 @@ public final class Constants {
 
 
 
-    public static final double kPRotation = 0.56; // working BL and FR p-value: .56
+    public static final double kPRotation = 0.57; // working BL and FR p-value: .56
     public static final double kIRotation = 0.0;
-    public static final double kDRotation = 0.0;
+    public static final double kDRotation = 0.005;
     public static final double kToleranceRotation = 0.01;
 
     public static final double kPR2 = 0.12;
