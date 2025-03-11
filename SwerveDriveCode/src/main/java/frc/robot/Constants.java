@@ -78,9 +78,9 @@ public final class Constants {
     /* ======== */
 
     // maximillian
-    public static final double maxVelocity = 1; // m/s
+    public static final double maxVelocity = 5; // m/s
     public static final double maxAcceleration = 7; // m/s^2
-    public static final double maxAngularVelocity = 1 * Math.PI; // rad/s
+    public static final double maxAngularVelocity = 2 * Math.PI; // rad/s
     public static final double maxAngularAcceleration = 4 * Math.PI; // rad/s^2
     // Teleop Max Speeds
     public static final double kTeleDriveMaxSpeed = 7.5 / 4.0; // meters/sec
@@ -95,7 +95,7 @@ public final class Constants {
     public static final int kFLRotate = 7;
     public static final int kFLCanCoder = 14;
     public static final double kFLOffsetRad = 0.088623 * 2 * Math.PI;
-    public static final boolean fLIsInverted = false;
+    public static final boolean fLIsInverted = true;
 
     // Front Right Module
     public static final int kFRDrive = 5;
@@ -116,7 +116,7 @@ public final class Constants {
     public static final int kBRRotate = 2;
     public static final int kBRCanCoder = 11;
     public static final double kBROffsetRad = 0.163574 * 2 * Math.PI;
-    public static final boolean bRIsInverted = false;
+    public static final boolean bRIsInverted = true;
 
     /* =============================== */
     /* SWERVE MODULE CONTROL CONSTANTS */

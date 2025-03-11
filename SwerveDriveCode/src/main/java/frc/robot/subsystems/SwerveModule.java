@@ -131,7 +131,7 @@ public class SwerveModule extends SubsystemBase {
       }
 
       // minimizes rotation magnitude
-      state = optimize(state, getState().angle);
+      // state = optimize(state, getState().angle);
 
       // set rotation motor with PID controller
       rotationMotor.set(rotationPIDController.calculate(getCANCoderRad(), state.angle.getRadians()));
